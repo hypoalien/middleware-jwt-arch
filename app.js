@@ -1,5 +1,6 @@
 const express = require('express');
 // Add this linebefore any environment variables are used
+const loggerMiddleware = require('./middleware/loggerMiddleware')
 const dotenv = require('dotenv'); 
 const bodyParser = require('body-parser');
 const userRoutes = require('./routes/usersRoute');
@@ -10,6 +11,7 @@ const app = express();
 // this is stored and defied in the config.env file
 const PORT = process.env.PORT || 3000; 
 
+app.use(loggerMiddleware); // Integrate logger middleware
 // Middleware
 app.use(bodyParser.json());
 
